@@ -10,6 +10,9 @@ module "s3_bucket" {
 
   bucket = local.bucket_name
 
+  attach_policy = true
+  policy        = data.aws_iam_policy_document.s3_policy.json
+
   acl                     = "private"
   block_public_acls       = true
   block_public_policy     = true

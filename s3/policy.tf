@@ -1,4 +1,4 @@
-data "aws_iam_policy_document" "cloudfront_read" {
+data "aws_iam_policy_document" "s3_policy" {
   statement {
     sid = "AllowCloudFrontRead"
 
@@ -8,7 +8,7 @@ data "aws_iam_policy_document" "cloudfront_read" {
     }
 
     actions   = ["s3:GetObject"]
-    resources = ["${module.s3_bucket.bucket_arn}/*"]
+    resources = ["arn:aws:s3::${local.bucket_name}/*"]
 
     condition {
       test     = "StringEquals"
