@@ -1,3 +1,9 @@
+locals {
+  bucket_name                = "acme-static-site"
+  account_id                 = data.aws_caller_identity.current.account_id
+  cloudfront_distribution_id = data.tfe_outputs.cloudfront.values.cloudfront_distribution_id
+}
+
 module "s3_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "5.10.0"
