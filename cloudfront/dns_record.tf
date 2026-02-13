@@ -12,6 +12,8 @@ module "records" {
         name    = module.cloudfront.cloudfront_distribution_domain_name
         zone_id = module.cloudfront.cloudfront_distribution_hosted_zone_id
       }
-    },
+    }
   ]
+
+  depends_on = [module.cloudfront]
 }

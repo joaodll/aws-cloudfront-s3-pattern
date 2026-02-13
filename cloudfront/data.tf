@@ -6,3 +6,8 @@ data "tfe_outputs" "s3-bucket" {
   organization = "ACME"
   workspace    = "s3-bucket-acme"
 }
+
+data "aws_acm_certificate" "issued" {
+  domain   = local.domain
+  statuses = ["ISSUED"]
+}

@@ -2,6 +2,7 @@ locals {
   bucket_domain_name = data.tfe_outputs.s3-bucket.values.bucket_regional_domain_name
   subdomain          = "hello-there"
   domain             = "acme.com"
+  acm_cert_arn       = data.aws_acm_certificate.issued.arn
 }
 module "cloudfront" {
   source  = "terraform-aws-modules/cloudfront/aws"
@@ -33,6 +34,7 @@ module "cloudfront" {
   }
 
   viewer_certificate = {
-    cloudfront_default_certificate = true
+    acm_certificate_arn = local.acm_cert_arn
+    ssl_support_method  = "sni-only"
   }
 }
