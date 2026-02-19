@@ -25,6 +25,7 @@ module "cloudfront" {
     s3-site = {
       domain_name              = local.bucket_domain_name
       origin_access_control_id = aws_cloudfront_origin_access_control.access_control.id
+      origin_path              = "/${var.site_version_path}"
     }
   }
 
