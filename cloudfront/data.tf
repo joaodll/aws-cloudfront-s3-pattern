@@ -11,3 +11,7 @@ data "aws_acm_certificate" "issued" {
   domain   = local.domain
   statuses = ["ISSUED"]
 }
+
+data "aws_cloudfront_response_headers_policy" "secure_headers" {
+  name = "Managed-SecurityHeadersPolicy"
+}

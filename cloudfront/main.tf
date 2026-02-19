@@ -3,6 +3,7 @@ locals {
   subdomain          = "hello-there"
   domain             = "acme.com"
   acm_cert_arn       = data.aws_acm_certificate.issued.arn
+  secure_headers_id  = data.aws_cloudfront_response_headers_policy.secure_headers
 }
 module "cloudfront" {
   source  = "terraform-aws-modules/cloudfront/aws"
@@ -13,15 +14,17 @@ module "cloudfront" {
   comment      = "CloudFront to Static site on Private S3"
   http_version = "http2and3"
 
+  default_root_object = "index.html"
+  restrictions = {
+    geo_restriction = {
+      restriction_type = "whitelist"
+      locations        = ["US", "BR", "DE", "FR", "CA", "JP"]
+    }
+  }
   origin = {
-    s3 = {
-      domain_name = local.bucket_domain_name
-      origin_id   = "s3-site"
-      origin_access_control = {
-        signing_behavior = "always"
-        signing_protocol = "sigv4"
-        origin_type      = "s3"
-      }
+    s3-site = {
+      domain_name              = local.bucket_domain_name
+      origin_access_control_id = aws_cloudfront_origin_access_control.access_control.id
     }
   }
 
@@ -29,12 +32,15 @@ module "cloudfront" {
     target_origin_id       = "s3-site"
     viewer_protocol_policy = "redirect-to-https"
 
-    allowed_methods = ["GET", "HEAD"]
-    cached_methods  = ["GET", "HEAD"]
+    allowed_methods            = ["GET", "HEAD"]
+    cached_methods             = ["GET", "HEAD"]
+    compress                   = true
+    response_headers_policy_id = local.secure_headers_id
   }
 
   viewer_certificate = {
-    acm_certificate_arn = local.acm_cert_arn
-    ssl_support_method  = "sni-only"
+    acm_certificate_arn      = local.acm_cert_arn
+    ssl_support_method       = "sni-only"
+    minimum_protocol_version = "TLSv1.2_2025"
   }
 }
