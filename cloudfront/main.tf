@@ -39,7 +39,8 @@ module "cloudfront" {
   }
 
   viewer_certificate = {
-    acm_certificate_arn = local.acm_cert_arn
-    ssl_support_method  = "sni-only"
+    acm_certificate_arn      = local.acm_cert_arn
+    ssl_support_method       = "sni-only"
+    minimum_protocol_version = "TLSv1.2_2025"
   }
 }
