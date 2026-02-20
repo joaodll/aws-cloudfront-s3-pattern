@@ -13,6 +13,7 @@ module "cloudfront" {
   comment      = "CloudFront to Static site on Private S3"
   http_version = "http2and3"
 
+  default_root_object = "index.html"
   restrictions = {
     geo_restriction = {
       restriction_type = "whitelist"
