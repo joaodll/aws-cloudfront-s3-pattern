@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ACME Supplies — Reliable Gadgets & Contraptions</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="/">
+        <img src="assets/logo.svg" alt="ACME Logo" />
+      </a>
+      <nav>
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <h1>ACME Supplies</h1>
+        <p class="tagline">High-performance gadgets, guaranteed to *almost always* function as expected.</p>
+        <p class="cta-row">
+          <button id="shop-btn" class="btn">Browse Products</button>
+          <button id="coupon-btn" class="btn alt">Get Coupon</button>
+        </p>
+      </div>
+    </section>
+
+    <section id="products" class="container products">
+      <h2>Featured Contraptions</h2>
+      <div class="grid">
+        <article class="card">
+          <img src="assets/rocket.svg" alt="Rocket">
+          <h3>ACME Turbo Rocket</h3>
+          <p>Compact, single-stage rocket for high-altitude chases. Propulsion guaranteed — user safety not included.</p>
+          <p><button class="btn order" data-product="ACME Turbo Rocket">Order</button></p>
+        </article>
+
+        <article class="card">
+          <img src="assets/dynamite.svg" alt="Dynamite">
+          <h3>ACME Rapid-Dynamite™</h3>
+          <p>Precision-timed explosive sticks. Great for dramatic exits and overly ambitious engineering.</p>
+          <p><button class="btn order" data-product="ACME Rapid-Dynamite™">Order</button></p>
+        </article>
+
+        <article class="card">
+          <img src="assets/anvil.svg" alt="Anvil">
+          <h3>ACME Heavy-Duty Anvil</h3>
+          <p>Drop-tested from many high places. Perfect for weight training and cartoon physics experiments.</p>
+          <p><button class="btn order" data-product="ACME Heavy-Duty Anvil">Order</button></p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="container about">
+      <h2>About ACME</h2>
+      <p>ACME supplies quality contraptions and supplies to adventurers and schemers everywhere.
+      Founded in a small, unmarked warehouse, our mission is to enable dreams (and occasionally nightmares) with engineering solutions that work — usually.</p>
+      <p class="legal">This is a playful fan-inspired sample site. "ACME" is used here in a parody/fan context.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© ACME Supplies — All rights reserved (in spirit). Built for demo purposes.</small>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
