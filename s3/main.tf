@@ -12,6 +12,7 @@ module "s3_bucket" {
 
   attach_policy = true
   policy        = data.aws_iam_policy_document.s3_policy.json
+  attach_deny_insecure_transport_policy = true
 
   acl                     = "private"
   block_public_acls       = true
