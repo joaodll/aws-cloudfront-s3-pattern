@@ -3,6 +3,7 @@ locals {
   subdomain          = "hello-there"
   domain             = "acme.com"
   acm_cert_arn       = data.aws_acm_certificate.issued.arn
+  secure_headers_id  = data.aws_cloudfront_response_headers_policy.secure_headers
 }
 module "cloudfront" {
   source  = "terraform-aws-modules/cloudfront/aws"
@@ -31,8 +32,10 @@ module "cloudfront" {
     target_origin_id       = "s3-site"
     viewer_protocol_policy = "redirect-to-https"
 
-    allowed_methods = ["GET", "HEAD"]
-    cached_methods  = ["GET", "HEAD"]
+    allowed_methods            = ["GET", "HEAD"]
+    cached_methods             = ["GET", "HEAD"]
+    compress                   = true
+    response_headers_policy_id = local.secure_headers_id
   }
 
   viewer_certificate = {
