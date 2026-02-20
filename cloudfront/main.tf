@@ -13,6 +13,12 @@ module "cloudfront" {
   comment      = "CloudFront to Static site on Private S3"
   http_version = "http2and3"
 
+  restrictions = {
+    geo_restriction = {
+      restriction_type = "whitelist"
+      locations        = ["US", "BR", "DE", "FR", "CA", "JP"]
+    }
+  }
   origin = {
     s3 = {
       domain_name = local.bucket_domain_name
