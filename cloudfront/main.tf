@@ -20,14 +20,9 @@ module "cloudfront" {
     }
   }
   origin = {
-    s3 = {
-      domain_name = local.bucket_domain_name
-      origin_id   = "s3-site"
-      origin_access_control = {
-        signing_behavior = "always"
-        signing_protocol = "sigv4"
-        origin_type      = "s3"
-      }
+    s3-site = {
+      domain_name              = local.bucket_domain_name
+      origin_access_control_id = aws_cloudfront_origin_access_control.access_control.id
     }
   }
 
