@@ -24,10 +24,10 @@ You can find more details about each module in their respective `README.md` file
 
 ---
 
-## Recommended repository layout
+## Repository
 
 ```
-/ (repo root)
+/
 ├─ cloudfront/            # CloudFront Terraform module and config
 ├─ s3/                    # S3 Terraform module and config
 ├─ static-demo-site/      # Example static site
